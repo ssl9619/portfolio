@@ -1,4 +1,4 @@
 # Portfolio
 
-Not all the files are there because GitHub wont allow me to send certain files ;-;
+Not all the files are there because GitHub wont allow me to send certain files ;-;\n
 But the main website is there.
