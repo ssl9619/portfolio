@@ -1,0 +1,82 @@
+/* Work detail container and columns */
+.work-detail-container {
+    display: flex;
+    flex-direction: row; /* Explicitly define as row to ensure side-by-side layout */
+    width: 85vw;
+    margin-top: 120px; /* Adjust based on footer size */
+    padding: 20px;
+    justify-content: space-between; /* Ensures spacing between columns */
+    align-items: flex-start; /* Aligns items at the start of the flex container */
+    box-shadow: 0 20px 24px rgba(0,0,0,0.2);
+    font-size: 18px;
+}
+
+.left-column, .right-column {
+    flex: 1; /* Divides the container space equally */
+    padding: 10px;
+    min-width: 0; /* Prevents flex items from growing beyond the available space */
+    box-sizing: border-box; /* Includes padding and border in the element's total width */
+}
+
+.carousel {
+    width: 100%; /* Ensures the carousel takes full width of its container */
+    margin-bottom: 20px; /* Space between carousel and info */
+}
+
+.carousel .slick-slide img {
+    width: 100%; /* Ensures images in the carousel fit their containers */
+    display: block; /* Removes additional space below images */
+}
+
+.carousel .slick-slide video {
+    width: 100%; /* Ensures images in the carousel fit their containers */
+    display: block; /* Removes additional space below images */
+}
+
+.work-info, .work-description, .additional-description {
+    margin-bottom: 10px;
+}
+
+.work-info a {
+    color:rgb(36, 36, 174);
+    font-style: italic;
+}
+
+/* Button gradient and styling */
+.slick-prev, .slick-next {
+    background-image: linear-gradient(to right, #474747 0%, #191C37 100%);
+    color: white; /* Set the arrow color */
+    font-size: 16px; /* Larger arrows */
+    border: none; /* Remove default borders */
+    border-radius: 13%; /* Circular buttons */
+    width: 70px; /* Button width */
+    height: 40px; /* Button height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75; /* Slightly transparent by default */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.slick-prev:before, .slick-next:before {
+    /* Slick uses :before to insert the arrow content; overwrite default styles here */
+    font-size: 20px; /* Arrow size */
+    color: white; /* Arrow color */
+    opacity: 1; /* Fully opaque arrows */
+}
+
+.slick-prev:hover, .slick-next:hover {
+    opacity: 1; /* Fully opaque on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+}
+
+/* Position adjustments if needed */
+.slick-prev {
+    left: 10px; /* Adjust distance from the left edge */
+    z-index: 1; /* Ensure it's above other content */
+}
+
+.slick-next {
+    right: 10px; /* Adjust distance from the right edge */
+    z-index: 1; /* Ensure it's above other content */
+}
