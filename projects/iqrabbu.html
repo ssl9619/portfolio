@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iqrabbu — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../project-page.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left reveal">
+      <a href="../index.html#projects" class="back-link">All projects</a>
+      <p class="project-tag">Interactive Installation</p>
+      <h1 class="project-title">Iqrabbu<br><em>اقربوا</em></h1>
+    </div>
+    <div class="project-hero-right reveal reveal-delay-1">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p class="meta-label">Type</p>
+          <p class="meta-value">Interactive Media Installation</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">September – December 2025</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Team</p>
+          <p class="meta-value">4-person collaborative team</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Context</p>
+          <p class="meta-value">Emirati cultural heritage, Abu Dhabi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURED SLIDESHOW ══════════════════════════════════
+       To add real media, replace each placeholder-img div with:
+         Image: <img src="../assets/images/iqrabbu/image1.jpg" alt="Caption">
+         Video: <video muted playsinline>
+                  <source src="../assets/images/iqrabbu/demo.mp4" type="video/mp4">
+                </video>
+       Videos play through once then auto-advance. Images show for 3 s.
+  ══════════════════════════════════════════════════════════ -->
+  <div class="slideshow-section">
+    <div class="slideshow" id="slideshow-iq">
+      <div class="slide active">
+        <img src="../assets/images/iqrabbu/crowd-watching.png" alt="Crowd watching">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/iqrabbu/end-product-ready-for-install.png" alt="End product ready for install">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/iqrabbu/install-site-pic.png" alt="Installation site setup">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/iqrabbu/with-the-professor.png" alt="With the professor">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/iqrabbu/with-the-professor-2.png" alt="With the professor 2">
+      </div>
+    </div>
+    <div class="slideshow-progress" id="progress-iq"></div>
+    <div class="slideshow-dots"     id="dots-iq"></div>
+    <span class="slideshow-counter" id="counter-iq">1 / 5</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Project Overview</p>
+      <p><em>Iqrabbu</em> — meaning "draw closer" in Arabic — is an <strong>interactive installation reimagining the traditional Emirati majlis</strong>, the communal seating space central to Gulf culture. Responsive <strong>sound and light</strong> invite visitors into a living, participatory version of this heritage space.</p>
+      <p>The installation responds to presence and movement, activating sensory feedback through a <strong>microcontroller-driven system</strong> programmed in <strong>Python</strong>. The goal was not to document culture but to make it participatory — letting people inhabit and activate it.</p>
+      <p>My contributions spanned the full pipeline: <strong>circuit design</strong> through soldering and wiring, <strong>microcontroller programming</strong>, and creating <strong>storyboards and flow charts</strong> that mapped the user journey and guided both technical and aesthetic implementation across the team.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Key Contributions</p>
+        <ul class="detail-list">
+          <li>Designed installation concept mapping <strong>technology to Emirati cultural heritage</strong></li>
+          <li>Contributed to <strong>circuit design</strong> through soldering and wiring of electronic components</li>
+          <li>Programmed <strong>microcontroller in Python</strong> for responsive sound and light logic</li>
+          <li>Created <strong>storyboards and flow charts</strong> mapping the full user journey</li>
+          <li>Guided technical and aesthetic implementation as part of <strong>4-person team</strong></li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Technologies</p>
+        <div class="tech-tags">
+          <span class="tech-tag">CircuitPython</span>
+          <span class="tech-tag">Arduino</span>
+          <span class="tech-tag">Electronics</span>
+          <span class="tech-tag">Soldering</span>
+          <span class="tech-tag">Responsive Sound</span>
+          <span class="tech-tag">Interactive Light</span>
+          <span class="tech-tag">UX Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-header reveal">
+      <span class="gallery-num">Gallery</span>
+      <h2 class="gallery-title">Project Images</h2>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item" data-index="0">
+        <img src="../assets/images/iqrabbu/3d-printing.png" alt="3D Printing" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">3D Printing</span></div>
+      </div>
+      <div class="masonry-item" data-index="1">
+        <img src="../assets/images/iqrabbu/circuit-schematic.png" alt="Circuit Schematic" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Circuit Schematic</span></div>
+      </div>
+      <div class="masonry-item" data-index="2">
+        <img src="../assets/images/iqrabbu/early-floor-plan.png" alt="Early Floor Plan" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Early Floor Plan</span></div>
+      </div>
+      <div class="masonry-item" data-index="3">
+        <img src="../assets/images/iqrabbu/early-soldering-1.png" alt="Early Soldering 1" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Early Soldering 1</span></div>
+      </div>
+      <div class="masonry-item" data-index="4">
+        <img src="../assets/images/iqrabbu/first-pressure-sensor.png" alt="First Pressure Sensor" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">First Pressure Sensor</span></div>
+      </div>
+      <div class="masonry-item" data-index="5">
+        <img src="../assets/images/iqrabbu/flyer.png" alt="Flyer" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Flyer</span></div>
+      </div>
+      <div class="masonry-item" data-index="6">
+        <img src="../assets/images/iqrabbu/initial-experimentation-with-pressure-sensors.png" alt="Initial Experimentation With Pressure Sensors" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Initial Experimentation With Pressure Sensors</span></div>
+      </div>
+      <div class="masonry-item" data-index="7">
+        <img src="../assets/images/iqrabbu/initial-flow-chart.png" alt="Initial Flow Chart" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Initial Flow Chart</span></div>
+      </div>
+      <div class="masonry-item" data-index="8">
+        <img src="../assets/images/iqrabbu/initial-sketch-in-autodesk.png" alt="Initial Sketch In Autodesk" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Initial Sketch In Autodesk</span></div>
+      </div>
+      <div class="masonry-item" data-index="9">
+        <img src="../assets/images/iqrabbu/install-pic-1.png" alt="Installation Pic 1" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Installation Pic 1</span></div>
+      </div>
+      <div class="masonry-item" data-index="10">
+        <img src="../assets/images/iqrabbu/laser-cutting-pic.png" alt="Laser Cutting Pic" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Laser Cutting Pic</span></div>
+      </div>
+      <div class="masonry-item" data-index="11">
+        <img src="../assets/images/iqrabbu/new-dallah-idea-3d-print.png" alt="New Dallah Idea 3D Print" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">New Dallah Idea 3D Print</span></div>
+      </div>
+      <div class="masonry-item" data-index="12">
+        <img src="../assets/images/iqrabbu/overhead-pic-1.png" alt="Overhead Pic 1" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Overhead Pic 1</span></div>
+      </div>
+      <div class="masonry-item" data-index="13">
+        <img src="../assets/images/iqrabbu/rough-initial-sketch-diagram.png" alt="Rough Initial Sketch Diagram" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Rough Initial Sketch Diagram</span></div>
+      </div>
+      <div class="masonry-item" data-index="14">
+        <img src="../assets/images/iqrabbu/installation-experience.png" alt="Installation Experience" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Installation Experience</span></div>
+      </div>
+      <div class="masonry-item" data-index="15">
+        <img src="../assets/images/iqrabbu/setting-up-the-installation.png" alt="Setting Up The Installation" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Setting Up The Installation</span></div>
+      </div>
+      <div class="masonry-item" data-index="16">
+        <img src="../assets/images/iqrabbu/testing-dallah-switch-concept.png" alt="Testing Dallah Switch Concept" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Testing Dallah Switch Concept</span></div>
+      </div>
+      <div class="masonry-item" data-index="17">
+        <img src="../assets/images/iqrabbu/tracing-initial-size-with-cardboard.png" alt="Tracing Initial Size With Cardboard" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Tracing Initial Size With Cardboard</span></div>
+      </div>
+      <div class="masonry-item" data-index="18">
+        <img src="../assets/images/iqrabbu/videography-1.png" alt="Videography 1" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Videography 1</span></div>
+      </div>
+      <div class="masonry-item" data-index="19">
+        <img src="../assets/images/iqrabbu/working-on-it-together-1.png" alt="Working On It Together 1" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Working On It Together 1</span></div>
+      </div>
+      <div class="masonry-item" data-index="20">
+        <img src="../assets/images/iqrabbu/working-on-it-together-2.png" alt="Working On It Together 2" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Working On It Together 2</span></div>
+      </div>
+      <div class="masonry-item" data-index="21">
+        <img src="../assets/images/iqrabbu/working-on-it-together-3.png" alt="Working On It Together 3" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Working On It Together 3</span></div>
+      </div>
+      <div class="masonry-item" data-index="22">
+        <img src="../assets/images/iqrabbu/crowd-watching.png" alt="Crowd Watching" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Crowd Watching</span></div>
+      </div>
+      <div class="masonry-item" data-index="23">
+        <img src="../assets/images/iqrabbu/end-product-ready-for-install.png" alt="End Product Ready For Install" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">End Product Ready For Install</span></div>
+      </div>
+      <div class="masonry-item" data-index="24">
+        <img src="../assets/images/iqrabbu/install-site-pic.png" alt="Install Site Pic" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Install Site Pic</span></div>
+      </div>
+      <div class="masonry-item" data-index="25">
+        <img src="../assets/images/iqrabbu/with-the-professor.png" alt="With The Professor" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">With The Professor</span></div>
+      </div>
+      <div class="masonry-item" data-index="26">
+        <img src="../assets/images/iqrabbu/with-the-professor-2.png" alt="With The Professor 2" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">With The Professor 2</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="soft-exoskeleton.html" class="project-nav-item">
+      <span class="nav-direction">← Previous</span>
+      <span class="nav-project-name">Soft Exoskeleton</span>
+    </a>
+    <a href="../index.html#projects" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Back</span>
+      <span class="nav-project-name">All Projects</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+    initSlideshow(
+      'slideshow-iq', 'dots-iq', 'counter-iq', 'progress-iq',
+      '../assets/youtube_links/iqrabbu.csv'
+    );
+  </script>
+</body>
+</html>

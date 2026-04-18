@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saeed Lootah</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    section { position: relative; z-index: 1; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 5rem 4rem;
+      border-right: 1px solid var(--line);
+    }
+    .hero-tag {
+      font-size: var(--fs-xs); letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 2rem;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 300; line-height: 1; letter-spacing: -0.01em;
+    }
+    .hero-name em { font-style: italic; color: var(--muted); display: block; }
+    .hero-divider { width: 3rem; height: 1px; background: var(--rust); margin: 2.5rem 0; }
+    .hero-desc {
+      font-size: var(--fs-base); line-height: 1.9;
+      color: var(--muted); max-width: 36ch;
+    }
+    .hero-desc strong { color: var(--ink); font-weight: 400; }
+    .hero-cta {
+      margin-top: 3rem; display: inline-flex; align-items: center; gap: 1rem;
+      font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid var(--ink); padding-bottom: 0.3rem;
+      transition: color 0.25s, border-color 0.25s; width: fit-content;
+    }
+    .hero-cta:hover { color: var(--rust); border-color: var(--rust); }
+    .hero-cta::after { content: '→'; }
+
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 5rem 3rem;
+    }
+    .hero-meta { display: flex; flex-direction: column; gap: 2.5rem; }
+    .meta-item { border-top: 1px solid var(--line); padding-top: 1.2rem; }
+    .meta-label {
+      font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dust); margin-bottom: 0.4rem;
+    }
+    .meta-value { font-family: 'Cormorant Garamond', serif; font-size: var(--fs-md); font-weight: 400; }
+    .hero-number {
+      position: absolute; bottom: 5rem; right: 4rem;
+      font-size: var(--fs-xs); letter-spacing: 0.15em;
+      color: var(--dust); writing-mode: vertical-rl;
+    }
+
+    /* ── SECTION SHARED ───────────────────────────────────── */
+    .section-header {
+      display: flex; align-items: baseline; gap: 2rem;
+      padding: 4rem 4rem 2.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num { font-size: var(--fs-xs); letter-spacing: 0.15em; color: var(--rust); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300; letter-spacing: -0.01em;
+    }
+
+    /* ── ABOUT ────────────────────────────────────────────── */
+    #about { border-bottom: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .about-text { padding: 4rem 4rem 5rem; border-right: 1px solid var(--line); }
+    .about-text p {
+      font-size: var(--fs-sm); line-height: 2;
+      color: var(--muted); margin-bottom: 1.4rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 400; }
+    .about-right { padding: 4rem 3.5rem 5rem; }
+    .about-block { margin-bottom: 3rem; }
+    .about-block:last-child { margin-bottom: 0; }
+    .block-title {
+      font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dust); margin-bottom: 1.2rem;
+    }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-tag {
+      font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid var(--line); padding: 0.35rem 0.9rem; color: var(--muted);
+    }
+    .interest-item {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.2rem 0; border-bottom: 1px solid var(--line);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 300; transition: color 0.25s;
+    }
+    .interest-item:hover { color: var(--rust); }
+    .interest-item::before { content: '◦'; font-size: 0.5rem; color: var(--rust); }
+
+    /* ── PROJECTS ─────────────────────────────────────────── */
+    #projects { border-bottom: 1px solid var(--line); }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .project-card {
+      padding: 3.5rem 4rem;
+      border-bottom: 1px solid var(--line);
+      position: relative; overflow: hidden;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+      transition: background 0.35s;
+    }
+    .project-card:nth-child(odd) { border-right: 1px solid var(--line); }
+    .project-card:hover { background: rgba(184,92,56,0.04); }
+    .project-arrow {
+      position: absolute; bottom: 3rem; right: 4rem;
+      font-size: 1.2rem; color: var(--dust);
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
+
+    /* Featured image at the top of each project card */
+    .card-image {
+      margin: -3.5rem -4rem 2.2rem; /* bleed to card edges */
+      height: 210px;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .card-image img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .project-card:hover .card-image img { transform: scale(1.04); }
+    .card-image-placeholder {
+      width: 100%; height: 100%;
+      background: rgba(26,23,20,0.06); display: block; position: relative;
+    }
+    .card-image-placeholder::after {
+      content: 'Add image';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--fs-xs); letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--dust);
+    }
+
+    /* Personal Projects card */
+    .personal-card:hover { background: rgba(184,92,56,0.06); }
+    .project-count {
+      margin-top: auto; padding-top: 2rem;
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 300; line-height: 1;
+      color: var(--rust);
+    }
+    .count-label {
+      font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dust);
+    }
+    .project-tag {
+      font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .project-tag::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--rust); }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 300; line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .project-subtitle {
+      font-size: var(--fs-xs); letter-spacing: 0.12em; color: var(--dust);
+      margin-bottom: 1rem; font-style: italic;
+    }
+    .project-desc {
+      font-size: var(--fs-sm); line-height: 1.9;
+      color: var(--muted); margin-bottom: 2rem;
+    }
+    .project-desc strong { color: var(--ink); font-weight: 400; }
+    .project-tech { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .tech-tag {
+      font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid var(--line); padding: 0.3rem 0.8rem; color: var(--muted);
+    }
+
+    /* ── EXPERIENCE ───────────────────────────────────────── */
+    #experience { border-bottom: 1px solid var(--line); }
+    .exp-list { padding: 0 4rem 2rem; }
+    .exp-item {
+      display: grid; grid-template-columns: 14rem 1fr;
+      gap: 4rem; padding: 3.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-size: var(--fs-xs); letter-spacing: 0.12em; color: var(--dust); padding-top: 0.3rem; }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; margin-bottom: 0.3rem;
+    }
+    .exp-company {
+      font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 1.2rem;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .exp-bullets li {
+      font-size: var(--fs-sm); line-height: 1.8; color: var(--muted);
+      padding-left: 1.2rem; position: relative;
+    }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--dust); }
+    .exp-bullets strong { color: var(--ink); font-weight: 400; }
+
+    /* ── CONTACT ──────────────────────────────────────────── */
+    #contact { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
+    .contact-left {
+      padding: 6rem 4rem; border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 300; line-height: 1.1;
+    }
+    .contact-heading em { font-style: italic; color: var(--muted); }
+    .contact-note { font-size: var(--fs-sm); line-height: 2; color: var(--muted); max-width: 38ch; }
+    .contact-right {
+      padding: 6rem 3.5rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+
+    /* Quick-tap buttons */
+    .quick-contact { display: flex; flex-direction: column; gap: 0.8rem; }
+    .quick-btn {
+      display: flex; flex-direction: column; gap: 0.25rem;
+      padding: 1rem 1.4rem; border: 1px solid var(--line);
+      text-decoration: none; color: var(--ink);
+      font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .quick-btn:hover { border-color: var(--rust); color: var(--rust); }
+    .whatsapp-btn:hover { border-color: #25d366; color: #25d366; }
+    .quick-sub {
+      font-size: var(--fs-xs); letter-spacing: 0.06em;
+      color: var(--muted); text-transform: none; opacity: 0.75;
+    }
+
+    /* Contact form */
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .contact-form input,
+    .contact-form textarea {
+      background: transparent; border: none; border-bottom: 1px solid var(--line);
+      padding: 1rem 0; font-family: 'DM Mono', monospace;
+      font-size: var(--fs-xs); font-weight: 300; color: var(--ink);
+      outline: none; width: 100%; transition: border-color 0.25s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: var(--muted); }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--ink); }
+    .contact-form textarea { resize: none; height: 7rem; margin-bottom: 1.5rem; }
+    .contact-form button {
+      align-self: flex-start; background: none; border: 1px solid var(--ink);
+      padding: 0.9rem 2rem; font-family: 'DM Mono', monospace;
+      font-size: var(--fs-xs); letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink); cursor: pointer; transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+    .contact-form button:hover { background: var(--rust); border-color: var(--rust); color: var(--sand); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 7rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .hero-right { padding: 3rem 2rem 4rem; }
+      .hero-number { display: none; }
+      .section-header { padding: 3rem 2rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-text { padding: 3rem 2rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .about-right { padding: 3rem 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 2.5rem 2rem; }
+      .project-card:nth-child(odd) { border-right: none; }
+      .card-image { margin: -2.5rem -2rem 1.8rem; }
+      .exp-list { padding: 0 2rem 2rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-left { padding: 4rem 2rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .contact-right { padding: 3rem 2rem 4rem; }
+      .quick-contact { order: -1; }
+      .quick-btn { padding: 1.4rem 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Portfolio — 2026</p>
+      <h1 class="hero-name">Saeed<br><em>Lootah</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">
+        <strong>Interactive Media</strong> practitioner &amp; researcher at NYUAD. I build at the intersection of <strong>technology</strong>, <strong>human experience</strong>, and <strong>clinical application</strong> — from VR rehabilitation tools to AI-driven wearables.
+      </p>
+      <a href="#projects" class="hero-cta">View my work</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-meta">
+        <div class="meta-item">
+          <p class="meta-label">Currently</p>
+          <p class="meta-value">Third Year — NYUAD</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Studying</p>
+          <p class="meta-value">Interactive Media × Business</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Research Assistant, AIM Lab</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Based in</p>
+          <p class="meta-value">Dubai, UAE</p>
+        </div>
+      </div>
+    </div>
+    <span class="hero-number">01 — Introduction</span>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal reveal-delay-1">
+        <p>
+          I'm Saeed — a third-year student at <strong>NYU Abu Dhabi</strong> pursuing a double major in <strong>Interactive Media</strong> and <strong>Business, Organizations &amp; Society</strong>. I work at the <strong>Applied Interactive Multimedia (AIM) Lab</strong> as a Research Assistant, building VR rehabilitation tools and AI-driven wearable systems for clinical use.
+        </p>
+        <p>
+          I'm as comfortable writing <strong>C# in Unity</strong> as I am coordinating <strong>clinical trials</strong> or presenting to funding bodies. I care about making technology that works for real people in real contexts — not just demos. GPA: <strong>3.50 / 4.00</strong>.
+        </p>
+        <p>
+          I'm actively looking for opportunities in <strong>Dubai</strong> — whether at a forward-thinking startup or an organisation tackling complex, high-stakes challenges.
+        </p>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-block">
+          <p class="block-title">Technical Skills</p>
+          <div class="skills-list">
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Arduino</span>
+            <span class="skill-tag">CircuitPython</span>
+            <span class="skill-tag">VR / AR</span>
+            <span class="skill-tag">EMG / EEG</span>
+            <span class="skill-tag">Haptic Systems</span>
+            <span class="skill-tag">Autodesk Fusion</span>
+            <span class="skill-tag">Adobe CC</span>
+          </div>
+        </div>
+        <div class="about-block">
+          <p class="block-title">Interests</p>
+          <div class="interest-item">Scuba Diving</div>
+          <div class="interest-item">Skiing</div>
+          <div class="interest-item">Football</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <div class="projects-grid">
+
+      <a href="projects/nine-hole-peg.html" class="project-card reveal reveal-delay-1">
+        <div class="card-image">
+          <img src="assets/images/nine-hole-peg/anhpt-early-development-saeed.png" alt="Adaptive Nine Hole Peg Test in early development">
+        </div>
+        <p class="project-tag">VR / Clinical Research</p>
+        <h3 class="project-title">Adaptive Nine Hole Peg Test</h3>
+        <p class="project-subtitle">Virtual Reality Simulation — Aug 2024 – May 2025</p>
+        <p class="project-desc">
+          A <strong>VR rehabilitation simulation</strong> for stroke and MS patients — <strong>AI-driven difficulty adaptation</strong>, hand tracking, and haptic feedback. Deployed in active clinical settings at NYUAD.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Unity / C#</span>
+          <span class="tech-tag">Hand Tracking</span>
+          <span class="tech-tag">Haptics</span>
+          <span class="tech-tag">AI Adaptation</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <a href="projects/soft-exoskeleton.html" class="project-card reveal reveal-delay-2">
+        <div class="card-image">
+          <img src="assets/images/soft-exoskeleton/omar_2.png" alt="Soft Exoskeleton EEG testing session">
+        </div>
+        <p class="project-tag">Wearable Tech / AI</p>
+        <h3 class="project-title">Soft Exoskeleton</h3>
+        <p class="project-subtitle">Wearable Rehabilitation Device — Aug 2025 – Present</p>
+        <p class="project-desc">
+          A soft exoskeleton combining <strong>EEG and electrical muscle stimulation</strong> to assist arm movement in rehabilitation, driven by an <strong>AI model trained on 20+ participants</strong>.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">EEG / EMG</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">AI / ML</span>
+          <span class="tech-tag">Hardware</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <a href="projects/iqrabbu.html" class="project-card reveal reveal-delay-1">
+        <div class="card-image">
+          <img src="assets/images/iqrabbu/with-the-professor.png" alt="Iqrabbu">
+        </div>
+        <p class="project-tag">Interactive Installation</p>
+        <h3 class="project-title">Iqrabbu</h3>
+        <p class="project-subtitle">Interactive Media Installation — Sep – Dec 2025</p>
+        <p class="project-desc">
+          An interactive installation reimagining the traditional <strong>Emirati majlis</strong> — responsive sound and light preserve <strong>cultural heritage</strong> through participatory technology.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">CircuitPython</span>
+          <span class="tech-tag">Arduino</span>
+          <span class="tech-tag">Electronics</span>
+          <span class="tech-tag">UX Design</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <!-- Personal Projects card — update count-num to match your project count -->
+      <a href="projects/personal.html" class="project-card personal-card reveal reveal-delay-2">
+        <div class="card-image">
+          <img src="assets/images/threes-ai/ppo-scores.png" alt="PPO training plot from Threes AI project" loading="lazy">
+        </div>
+        <p class="project-tag">Personal Projects</p>
+        <h3 class="project-title">Beyond the Lab</h3>
+        <p class="project-desc">Photography, design experiments, and side builds — explorations outside of academic and research contexts.</p>
+        <div class="project-count">
+          <span class="count-num">05</span>
+          <span class="count-label">projects</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-date">Aug 2024 — Present</div>
+        <div class="exp-content">
+          <h3 class="exp-role">Research Assistant</h3>
+          <p class="exp-company">Applied Interactive Multimedia Lab — NYUAD</p>
+          <ul class="exp-bullets">
+            <li>Conducted <strong>literature reviews</strong> on stroke and MS rehabilitation, identifying <strong>8 critical hand dexterity metrics</strong> and muscle activation patterns</li>
+            <li>Coordinated data collection from <strong>20+ participants</strong> for EMG-based <strong>machine learning models</strong> in the Soft Exoskeleton project</li>
+            <li>Presented research outcomes to <strong>Mubadala</strong> funding representatives, securing continued project support</li>
+            <li>Programmed <strong>VR rehabilitation applications</strong> in Unity (C#) and developed <strong>AI training pipelines</strong> in Python</li>
+            <li>Collaborated with <strong>clinical therapists</strong> to refine rehabilitation protocols from active trial feedback</li>
+            <li>Debugged and optimised <strong>VR hand-tracking</strong> systems and <strong>EMG/EEG signal processing</strong> algorithms</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-date">2024 — Present</div>
+        <div class="exp-content">
+          <h3 class="exp-role">Double Major Student</h3>
+          <p class="exp-company">NYU Abu Dhabi — GPA 3.50 / 4.00</p>
+          <ul class="exp-bullets">
+            <li><strong>BA in Interactive Media</strong> and <strong>Business, Organizations &amp; Society</strong> — Expected May 2027</li>
+            <li>Relevant coursework: Intro to Interactive Media, Communication &amp; Technology, Statistics for Social Sciences, Communications Lab, Understanding Interactive Media, <strong>Cyberwarfare</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left reveal">
+      <div>
+        <p class="hero-tag" style="margin-bottom:1.5rem;">05 — Get in touch</p>
+        <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
+      </div>
+      <p class="contact-note">
+        I'm currently open to internships, graduate roles, and project collaborations in Dubai and the wider region. Don't hesitate to reach out — even speculatively.
+      </p>
+    </div>
+    <div class="contact-right reveal reveal-delay-1">
+      <!-- Form (top on desktop, below buttons on mobile) -->
+      <form action="https://formspree.io/f/xnjolrpv" method="POST" class="contact-form">
+        <input type="text"  name="name"    placeholder="Your name"    required>
+        <input type="email" name="email"   placeholder="Your email"   required>
+        <textarea           name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send message →</button>
+      </form>
+      <!-- Quick-tap buttons (below form on desktop, above form on mobile via CSS order) -->
+      <div class="quick-contact">
+        <a href="https://wa.me/971565732300?text=Hi%20Saeed%2C%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out."
+           target="_blank" class="quick-btn whatsapp-btn">
+          Chat on WhatsApp →
+          <span class="quick-sub">+971 56 573 2300</span>
+        </a>
+        <a href="mailto:ssl9619@nyu.edu" class="quick-btn email-btn">
+          Send an email →
+          <span class="quick-sub">ssl9619@nyu.edu</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:ssl9619@nyu.edu">ssl9619@nyu.edu</a>
+      <a href="mailto:saeedslootah@gmail.com">saeedslootah@gmail.com</a>
+      <a href="https://linkedin.com/in/saeedsl" target="_blank">LinkedIn</a>
+      <a href="https://github.com/ssl9619" target="_blank">GitHub</a>
+      <a href="assets/cv/saeed-lootah-cv.pdf" target="_blank">View résumé →</a>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Saeed Lootah. All rights reserved.</p>
+      <a href="#hero" class="footer-back">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/portfolio.js"></script>
+  <script>
+    initCursor('a, .interest-item');
+    initReveal();
+  </script>
+</body>
+</html>

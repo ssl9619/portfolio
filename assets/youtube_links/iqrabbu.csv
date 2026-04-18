@@ -1,0 +1,17 @@
+# YouTube links for the Iqrabbu project
+# ──────────────────────────────────────────────────────────────
+# Format: YouTube URL , Caption
+#
+#   Each non-blank, non-comment line is one slide in the featured
+#   slideshow. YouTube slides are added FIRST, before any images.
+#   They auto-advance after 30 s, or the viewer can click a dot to skip.
+#
+#   Supported URL formats:
+#     https://www.youtube.com/watch?v=VIDEO_ID , Caption
+#     https://youtu.be/VIDEO_ID               , Caption
+#     https://www.youtube.com/shorts/VIDEO_ID  , Caption
+#
+# Paste your links below (remove the # at the start of each line):
+#
+# https://www.youtube.com/watch?v=REPLACE_ME , Installation Walkthrough
+# https://youtu.be/REPLACE_ME               , Visitor Interaction

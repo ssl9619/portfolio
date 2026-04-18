@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Projects — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    /* ── PAGE HERO ─────────────────────────────────────────── */
+    .page-hero {
+      min-height: 40vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+      padding-top: 7rem;
+    }
+    .page-hero-left {
+      padding: 4rem 3rem 5rem 4rem;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: var(--fs-xs);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 3rem;
+      transition: color 0.25s;
+      width: fit-content;
+    }
+    .back-link:hover { color: var(--rust); }
+    .back-link::before { content: '←'; }
+    .page-tag {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .page-tag::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--rust);
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .page-title em {
+      font-style: italic;
+      color: var(--muted);
+      display: block;
+    }
+    .page-hero-right {
+      padding: 4rem 3rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .page-hero-count {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--rust);
+    }
+    .page-hero-label {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    /* ── MAIN SPLIT: list left, gallery right ───────────────── */
+    .personal-split {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    /* ── LEFT: project list ─────────────────────────────────── */
+    .personal-list {
+      border-right: 1px solid var(--line);
+    }
+    .list-header {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 3rem 4rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .list-header-num {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.15em;
+      color: var(--rust);
+    }
+    .list-header-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+    .project-entry {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2.5rem 4rem;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.25s;
+    }
+    .project-entry:last-child { border-bottom: none; }
+    .project-entry:hover { background: rgba(184,92,56,0.04); }
+    .entry-num {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.15em;
+      color: var(--rust);
+      padding-top: 0.4rem;
+    }
+    .entry-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 1.8vw, 1.75rem);
+      font-weight: 300;
+      margin-bottom: 0.3rem;
+      transition: color 0.25s;
+    }
+    .project-entry:hover .entry-title { color: var(--rust); }
+    .entry-category {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: 0.8rem;
+    }
+    .entry-desc {
+      font-size: var(--fs-sm);
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .entry-desc strong { color: var(--ink); font-weight: 400; }
+    .entry-arrow {
+      font-size: 1rem;
+      color: var(--dust);
+      padding-top: 0.35rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.25s, transform 0.25s, color 0.25s;
+    }
+    .project-entry:hover .entry-arrow {
+      opacity: 1;
+      transform: translateX(0);
+      color: var(--rust);
+    }
+
+    /* ── RIGHT: gallery masonry ─────────────────────────────── */
+    .personal-gallery {
+      padding: 3rem 3rem 4rem;
+      columns: 2;
+      column-gap: 1.2rem;
+    }
+    .gallery-header-inline {
+      column-span: all;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2rem;
+    }
+    .gallery-num {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.15em;
+      color: var(--rust);
+    }
+    .gallery-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 300;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .masonry-item:hover img { transform: scale(1.03); }
+    .masonry-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,23,20,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+    .masonry-item:hover .masonry-overlay { background: rgba(26,23,20,0.35); }
+    .masonry-caption {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .masonry-item:hover .masonry-caption { opacity: 1; transform: none; }
+    .masonry-video {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+    }
+    .masonry-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* ── FOOTER NAV ─────────────────────────────────────────── */
+    .project-nav { display: grid; grid-template-columns: 1fr 1fr; }
+    .project-nav-item {
+      padding: 3rem 4rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: background 0.3s;
+    }
+    .project-nav-item:first-child { border-right: 1px solid var(--line); }
+    .project-nav-item:hover { background: rgba(184,92,56,0.04); }
+    .nav-direction {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .nav-project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────────────── */
+    #lightbox {
+      position: fixed; inset: 0;
+      background: rgba(26,23,20,0.96);
+      z-index: 900;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: default;
+    }
+    #lightbox.active { opacity: 1; pointer-events: auto; }
+    .lb-content {
+      display: flex; align-items: center; justify-content: center;
+      max-width: 88vw; max-height: 88vh;
+    }
+    .lb-content img {
+      max-width: 88vw; max-height: 88vh;
+      object-fit: contain; display: block; user-select: none;
+    }
+    .lb-video { width: 76vw; max-width: 1080px; aspect-ratio: 16/9; }
+    .lb-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .lb-close {
+      position: fixed; top: 1.5rem; right: 2rem;
+      background: none; border: 1px solid rgba(240,235,224,0.25);
+      color: rgba(240,235,224,0.7); font-size: 0.9rem;
+      font-family: 'DM Mono', monospace;
+      width: 2.4rem; height: 2.4rem;
+      cursor: pointer; z-index: 901;
+      transition: border-color 0.2s, color 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lb-close:hover { border-color: var(--rust); color: var(--rust); }
+    .lb-prev, .lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: 1px solid rgba(240,235,224,0.25);
+      color: rgba(240,235,224,0.7); font-size: 1rem;
+      font-family: 'DM Mono', monospace;
+      width: 2.8rem; height: 2.8rem;
+      cursor: pointer; z-index: 901;
+      transition: border-color 0.2s, color 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lb-prev { left: 1.5rem; }
+    .lb-next { right: 1.5rem; }
+    .lb-prev:hover, .lb-next:hover { border-color: var(--rust); color: var(--rust); }
+    .lb-caption {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'DM Mono', monospace; font-size: var(--fs-xs);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(240,235,224,0.45); pointer-events: none; white-space: nowrap;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .page-hero { grid-template-columns: 1fr; }
+      .page-hero-left {
+        padding: 3rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .page-hero-right { padding: 3rem 2rem; }
+      .personal-split { grid-template-columns: 1fr; }
+      .personal-list { border-right: none; border-bottom: 1px solid var(--line); }
+      .list-header { padding: 2.5rem 2rem 1.8rem; }
+      .project-entry { grid-template-columns: 3rem 1fr; padding: 2rem; }
+      .entry-arrow { display: none; }
+      .personal-gallery { padding: 2rem; columns: 2; }
+      .project-nav-item { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .personal-gallery { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-left reveal">
+      <a href="../index.html#projects" class="back-link">All projects</a>
+      <p class="page-tag">Personal Projects</p>
+      <h1 class="page-title">Beyond<br><em>the Lab</em></h1>
+    </div>
+    <div class="page-hero-right reveal reveal-delay-1">
+      <span class="page-hero-count">02</span>
+      <span class="page-hero-label">personal projects</span>
+    </div>
+  </div>
+
+  <!-- SPLIT: project list (left) + gallery (right) -->
+  <div class="personal-split">
+
+    <!-- LEFT: project list -->
+    <div class="personal-list">
+      <div class="list-header reveal">
+        <span class="list-header-num">01</span>
+        <h2 class="list-header-title">Projects</h2>
+      </div>
+
+      <a href="threes-ai.html" class="project-entry reveal">
+        <span class="entry-num">01</span>
+        <div>
+          <h3 class="entry-title">Threes AI</h3>
+          <p class="entry-category">Machine Learning / Reinforcement Learning</p>
+          <p class="entry-desc">A <strong>PPO</strong> agent trained over <strong>500,000 episodes</strong> to autonomously play the mobile puzzle game Threes, achieving a best score of <strong>2670</strong>. Multiple algorithms explored — <strong>DQN</strong>, <strong>A2C</strong>, and PPO hybrids — with meaningful room for further improvement.</p>
+        </div>
+        <span class="entry-arrow">→</span>
+      </a>
+
+      <a href="intro-im.html" class="project-entry reveal reveal-delay-1">
+        <span class="entry-num">02</span>
+        <div>
+          <h3 class="entry-title">Intro to Interactive Media</h3>
+          <p class="entry-category">Physical Computing / p5.js</p>
+          <p class="entry-desc">A semester of creative coding and hardware at NYUAD — culminating in <strong>Safe Russian Roulette</strong>, a two-player physical game built with <strong>Arduino</strong>, <strong>p5.js</strong>, <strong>serial communication</strong>, and a <strong>shock pen</strong> as the real-world stake.</p>
+        </div>
+        <span class="entry-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- RIGHT: flat gallery -->
+    <div class="personal-gallery reveal">
+      <div class="gallery-header-inline">
+        <span class="gallery-num">02</span>
+        <h2 class="gallery-title">Media</h2>
+      </div>
+
+      <div class="masonry-item" data-index="0">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="PPO best game replay — Threes AI">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.mp4" type="video/mp4">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.webm" type="video/webm">
+          Your browser does not support embedded video.
+        </video>
+        <div class="masonry-overlay"><span class="masonry-caption">Best Game Replay — Score 2670</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="1">
+        <img src="../assets/images/threes-ai/ppo-scores.png" alt="PPO training scores over 500,000 episodes" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">PPO Training Plot — 500,000 Episodes</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="2">
+        <div class="masonry-video">
+          <iframe
+            src="https://www.youtube.com/embed/FjFbDAaFtIE?rel=0&modestbranding=1"
+            frameborder="0"
+            allow="encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Safe Russian Roulette — Final Project Demo"
+          ></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">Safe Russian Roulette — Final Demo</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="3">
+        <img src="../assets/images/threes-ai/threes-game.png" alt="The original Threes mobile puzzle game" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Original Threes Game</span></div>
+      </div>
+
+    </div>
+
+  </div><!-- /personal-split -->
+
+  <!-- FOOTER NAV -->
+  <div class="project-nav">
+    <a href="../index.html#projects" class="project-nav-item">
+      <span class="nav-direction">← Back</span>
+      <span class="nav-project-name">All Projects</span>
+    </a>
+    <a href="../index.html#contact" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Get in touch</span>
+      <span class="nav-project-name">Contact</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+  </script>
+</body>
+</html>

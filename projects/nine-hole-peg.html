@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adaptive Nine Hole Peg Test — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../project-page.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left reveal">
+      <a href="../index.html#projects" class="back-link">All projects</a>
+      <p class="project-tag">VR / Clinical Research</p>
+      <h1 class="project-title">Adaptive<br>Nine Hole<br>Peg Test</h1>
+    </div>
+    <div class="project-hero-right reveal reveal-delay-1">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p class="meta-label">Type</p>
+          <p class="meta-value">Virtual Reality Simulation</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">August 2024 – May 2025</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Team</p>
+          <p class="meta-value">2-person team</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Setting</p>
+          <p class="meta-value">Clinical deployment, NYUAD</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Affiliation</p>
+          <p class="meta-value">AIM Lab, funded by Mubadala</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURED SLIDESHOW ══════════════════════════════════
+       To add real media, replace each placeholder-img div with:
+         Image: <img src="../assets/images/nine-hole-peg/image1.jpg" alt="Caption">
+         Video: <video muted playsinline>
+                  <source src="../assets/images/nine-hole-peg/demo.mp4" type="video/mp4">
+                </video>
+       Videos play through once then auto-advance. Images show for 3 s.
+  ══════════════════════════════════════════════════════════ -->
+  <div class="slideshow-section">
+    <div class="slideshow" id="slideshow-nhp">
+      <div class="slide active" data-yt-id="GWz_OUbwVc8" data-yt-caption="Mubadala Presentation">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/GWz_OUbwVc8?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Mubadala Presentation"
+          ></iframe>
+          <span class="yt-caption">Mubadala Presentation</span>
+        </div>
+      </div>
+      <div class="slide" data-yt-id="9DeriK3QG10" data-yt-caption="Early Development With SVM Dexterity Assessment">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/9DeriK3QG10?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Early Development With SVM Dexterity Assessment"
+          ></iframe>
+          <span class="yt-caption">Early Development With SVM Dexterity Assessment</span>
+        </div>
+      </div>
+      <div class="slide" data-yt-id="hgcIwBdFt0g" data-yt-caption="Haptic Feedback Device With Four Vibration Motors">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/hgcIwBdFt0g?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Haptic Feedback Device With Four Vibration Motors"
+          ></iframe>
+          <span class="yt-caption">Haptic Feedback Device With Four Vibration Motors</span>
+        </div>
+      </div>
+      <div class="slide" data-yt-id="UTFCzm2vbBE" data-yt-caption="Playground Stage Before Entering Nine Hole Peg Test">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/UTFCzm2vbBE?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Playground Stage Before Entering Nine Hole Peg Test"
+          ></iframe>
+          <span class="yt-caption">Playground Stage Before Entering Nine Hole Peg Test</span>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../assets/images/nine-hole-peg/anhpt-early-development-saeed.png" alt="Adaptive Nine Hole Peg Test early development scene">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/nine-hole-peg/Hamed wearing wristband.JPG" alt="Hamed wearing wristband controller for rehabilitation interaction">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/nine-hole-peg/Headset equipped with Ultraleap.JPG" alt="Headset equipped with Ultraleap hand tracking module">
+      </div>
+    </div>
+    <div class="slideshow-progress" id="progress-nhp"></div>
+    <div class="slideshow-dots"     id="dots-nhp"></div>
+    <span class="slideshow-counter" id="counter-nhp">1 / 3</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Project Overview</p>
+      <p>A <strong>VR rehabilitation simulation</strong> for <strong>stroke and MS patients</strong> undergoing dexterity training. Built in <strong>Unity (C#)</strong>, it translates the standard clinical Nine Hole Peg Test into an immersive, adaptive experience with real-time <strong>hand tracking</strong> and <strong>haptic feedback</strong>.</p>
+      <p>The core innovation is an <strong>AI-driven difficulty model</strong> that personalises task complexity based on each patient's live performance metrics — meeting each patient where they are, session by session.</p>
+      <p>The <strong>MVP was deployed in active clinical settings</strong> at NYUAD. Hand tracking was grounded in a comprehensive <strong>literature review of motor rehabilitation best practices</strong>, and therapist feedback drove iterative improvements throughout.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Key Contributions</p>
+        <ul class="detail-list">
+          <li>Built VR simulation with <strong>hand tracking</strong> and <strong>haptic feedback</strong> in Unity / C#</li>
+          <li>Implemented <strong>AI-driven difficulty adaptation</strong> based on patient performance</li>
+          <li>Grounded hand feature tracking in <strong>motor rehabilitation literature review</strong></li>
+          <li>Deployed <strong>MVP in clinical settings</strong> and iterated on therapist feedback</li>
+          <li>Co-built working product as part of <strong>2-person team</strong></li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Technologies</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Unity</span>
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">Hand Tracking</span>
+          <span class="tech-tag">Haptic Feedback</span>
+          <span class="tech-tag">AI / ML</span>
+          <span class="tech-tag">VR</span>
+          <span class="tech-tag">Clinical Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-header reveal">
+      <span class="gallery-num">Gallery</span>
+      <h2 class="gallery-title">Project Images</h2>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item" data-index="0">
+        <img src="../assets/images/nine-hole-peg/anhpt-early-development-saeed.png" alt="ANHPT early development" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">ANHPT Early Development</span></div>
+      </div>
+      <div class="masonry-item" data-index="1">
+        <img src="../assets/images/nine-hole-peg/Hamed wearing wristband.JPG" alt="Wristband hardware used during pilot testing" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Hand Tracking System</span></div>
+      </div>
+      <div class="masonry-item" data-index="2">
+        <img src="../assets/images/nine-hole-peg/Headset equipped with Ultraleap.JPG" alt="Ultraleap headset configuration for hand tracking" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">AI Difficulty Model</span></div>
+      </div>
+      <div class="masonry-item" data-index="3">
+        <div class="masonry-video">
+          <iframe src="https://www.youtube.com/embed/GWz_OUbwVc8?rel=0&modestbranding=1" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen title="Mubadala Presentation"></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">Mubadala Presentation</span></div>
+      </div>
+      <div class="masonry-item" data-index="4">
+        <div class="masonry-video">
+          <iframe src="https://www.youtube.com/embed/9DeriK3QG10?rel=0&modestbranding=1" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen title="Early Development — SVM Dexterity Assessment"></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">Early Development — SVM Dexterity Assessment</span></div>
+      </div>
+      <div class="masonry-item" data-index="5">
+        <div class="masonry-video">
+          <iframe src="https://www.youtube.com/embed/hgcIwBdFt0g?rel=0&modestbranding=1" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen title="Haptic Feedback Device — Four Vibration Motors"></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">Haptic Feedback Device — Four Vibration Motors</span></div>
+      </div>
+      <div class="masonry-item" data-index="6">
+        <div class="masonry-video">
+          <iframe src="https://www.youtube.com/embed/UTFCzm2vbBE?rel=0&modestbranding=1" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen title="Playground Stage"></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">Playground Stage</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="../index.html#projects" class="project-nav-item">
+      <span class="nav-direction">← Back</span>
+      <span class="nav-project-name">All Projects</span>
+    </a>
+    <a href="soft-exoskeleton.html" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Next →</span>
+      <span class="nav-project-name">Soft Exoskeleton</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+    initSlideshow(
+      'slideshow-nhp', 'dots-nhp', 'counter-nhp', 'progress-nhp'
+    );
+  </script>
+</body>
+</html>

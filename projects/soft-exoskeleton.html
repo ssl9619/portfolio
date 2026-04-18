@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soft Exoskeleton — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../project-page.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left reveal">
+      <a href="../index.html#projects" class="back-link">All projects</a>
+      <p class="project-tag">Wearable Tech / AI</p>
+      <h1 class="project-title">Soft<br>Exoskeleton</h1>
+    </div>
+    <div class="project-hero-right reveal reveal-delay-1">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p class="meta-label">Type</p>
+          <p class="meta-value">Wearable Rehabilitation Device</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">August 2025 – Present</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Team</p>
+          <p class="meta-value">3-person team</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Participants</p>
+          <p class="meta-value">20+ data collection subjects</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Affiliation</p>
+          <p class="meta-value">AIM Lab, funded by Mubadala</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURED SLIDESHOW ══════════════════════════════════
+       To add real media, replace each placeholder-img div with:
+         Image: <img src="../assets/images/soft-exoskeleton/image1.jpg" alt="Caption">
+         Video: <video muted playsinline>
+                  <source src="../assets/images/soft-exoskeleton/demo.mp4" type="video/mp4">
+                </video>
+       Videos play through once then auto-advance. Images show for 3 s.
+  ══════════════════════════════════════════════════════════ -->
+  <div class="slideshow-section">
+    <div class="slideshow" id="slideshow-se">
+      <div class="slide active" data-yt-id="4aADUWvDOCI" data-yt-caption="EMG MindRove Device Experiment Before EEG Integration">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/4aADUWvDOCI?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="EMG MindRove Device Experiment Before EEG Integration"
+          ></iframe>
+          <span class="yt-caption">EMG MindRove Device Experiment Before EEG Integration</span>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../assets/images/soft-exoskeleton/omar_2.png" alt="Participant using EEG headset during soft exoskeleton testing">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/soft-exoskeleton/omar_1.png" alt="Research session for soft exoskeleton control training">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/soft-exoskeleton/extend_band_topographies_all.png" alt="Topography map for extension band neural patterns">
+      </div>
+    </div>
+    <div class="slideshow-progress" id="progress-se"></div>
+    <div class="slideshow-dots"     id="dots-se"></div>
+    <span class="slideshow-counter" id="counter-se">1 / 3</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Project Overview</p>
+      <p>A <strong>wearable rehabilitation device</strong> engineered to assist arm extension and retraction for patients recovering from stroke or neurological conditions. The system combines an <strong>EEG headset</strong> with <strong>electrical muscle stimulation (EMS)</strong> pads on the bicep and tricep — translating detected intention into physical assistance.</p>
+      <p>The project initially used <strong>EMG to detect neural activity in the muscles</strong>, but to achieve faster response times we switched to <strong>EEG to better detect the user's intention to move the arm</strong>.</p>
+      <p>At the core is an <strong>AI classification model</strong> trained on data from <strong>20+ participants</strong>. It decodes muscle intention from EEG signals in real time, enabling the exoskeleton to respond to what the patient is trying to do — not just what they can physically achieve.</p>
+      <p>My role covered the full research pipeline: <strong>experimental protocol design</strong>, data collection, hardware integration with the <strong>EEG X.on device</strong>, and collaboration on the AI-driven control system across a 3-person team.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Key Contributions</p>
+        <ul class="detail-list">
+          <li>Engineered soft exoskeleton integrating <strong>EEG headset</strong> and <strong>electrical muscle stimulation</strong></li>
+          <li>Led data collection with <strong>20+ participants</strong> to train AI muscle intention model</li>
+          <li>Designed <strong>experimental protocols</strong> for EEG X.on device and EMS pad placement</li>
+          <li>Collaborated on integrating hardware components with <strong>AI-driven control systems</strong></li>
+          <li>Co-developed across full <strong>research-to-hardware pipeline</strong></li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Technologies</p>
+        <div class="tech-tags">
+          <span class="tech-tag">EEG</span>
+          <span class="tech-tag">EMG / EMS</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">AI / ML</span>
+          <span class="tech-tag">Hardware Integration</span>
+          <span class="tech-tag">Signal Processing</span>
+          <span class="tech-tag">Experimental Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-header reveal">
+      <span class="gallery-num">Gallery</span>
+      <h2 class="gallery-title">Project Images</h2>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item" data-index="0">
+        <img src="../assets/images/soft-exoskeleton/omar_2.png" alt="Exoskeleton hardware validation with EEG setup" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Exoskeleton Hardware</span></div>
+      </div>
+      <div class="masonry-item" data-index="1">
+        <img src="../assets/images/soft-exoskeleton/omar_1.png" alt="EEG setup using the X.on device" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">EEG Setup — X.on Device</span></div>
+      </div>
+      <div class="masonry-item" data-index="2">
+        <img src="../assets/images/soft-exoskeleton/extend_band_topographies_all.png" alt="EMS and neural extension signal topographies" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">EMS Pad Placement</span></div>
+      </div>
+      <div class="masonry-item" data-index="3">
+        <img src="../assets/images/soft-exoskeleton/rest_extended_band_topographies_all.png" alt="Rest versus extension EEG signal mapping" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Data Collection Session</span></div>
+      </div>
+      <div class="masonry-item" data-index="4">
+        <img src="../assets/images/soft-exoskeleton/rest_flexed_band_topographies_all.png" alt="Rest versus flexion EEG signal mapping" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">AI Classification Model</span></div>
+      </div>
+      <div class="masonry-item" data-index="5">
+        <img src="../assets/images/soft-exoskeleton/flex_band_topographies_all copy.png" alt="Flexion band analysis used for system integration" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">System Integration</span></div>
+      </div>
+      <div class="masonry-item" data-index="6">
+        <div class="masonry-video">
+          <iframe src="https://www.youtube.com/embed/4aADUWvDOCI?rel=0&modestbranding=1" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen title="EMG MindRove Device Experiment"></iframe>
+        </div>
+        <div class="masonry-overlay"><span class="masonry-caption">EMG MindRove Device Experiment</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="nine-hole-peg.html" class="project-nav-item">
+      <span class="nav-direction">← Previous</span>
+      <span class="nav-project-name">Nine Hole Peg Test</span>
+    </a>
+    <a href="iqrabbu.html" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Next →</span>
+      <span class="nav-project-name">Iqrabbu</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+    initSlideshow(
+      'slideshow-se', 'dots-se', 'counter-se', 'progress-se'
+    );
+  </script>
+</body>
+</html>

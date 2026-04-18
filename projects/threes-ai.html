@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Threes AI — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../project-page.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left reveal">
+      <a href="personal.html" class="back-link">Personal projects</a>
+      <p class="project-tag">Machine Learning / Reinforcement Learning</p>
+      <h1 class="project-title">Threes<br><em>AI</em></h1>
+    </div>
+    <div class="project-hero-right reveal reveal-delay-1">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p class="meta-label">Type</p>
+          <p class="meta-value">Reinforcement Learning Agent</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Algorithm</p>
+          <p class="meta-value">Proximal Policy Optimization (PPO)</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Training</p>
+          <p class="meta-value">500,000 episodes</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Best score achieved</p>
+          <p class="meta-value">2670</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Context</p>
+          <p class="meta-value">Personal side project</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED SLIDESHOW -->
+  <div class="slideshow-section">
+    <div class="slideshow" id="slideshow-threes">
+      <div class="slide active">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="PPO best game replay — step-through of the highest-scoring episode">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.mp4" type="video/mp4">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.webm" type="video/webm">
+          Your browser does not support embedded video.
+        </video>
+      </div>
+      <div class="slide">
+        <img src="../assets/images/threes-ai/ppo-scores.png" alt="PPO training plot — scores per episode over 500,000 episodes">
+      </div>
+      <div class="slide">
+        <img src="../assets/images/threes-ai/threes-game.png" alt="Threes — the original mobile puzzle game">
+      </div>
+    </div>
+    <div class="slideshow-progress" id="progress-threes"></div>
+    <div class="slideshow-dots"     id="dots-threes"></div>
+    <span class="slideshow-counter" id="counter-threes">1 / 3</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Project Overview</p>
+      <p><strong>Threes</strong> is a mobile puzzle game played on a 4×4 grid. Tiles numbered 1 and 2 merge together to form 3, and from 3 onward matching tiles merge (3+3=6, 6+6=12, and so on). The board fills up with each move, and the goal is to build the highest-value tile possible before running out of space. It sounds simple — and it is to learn, but notoriously difficult to master.</p>
+      <p>This project involved building and training a <strong>Proximal Policy Optimization (PPO)</strong> agent to play Threes autonomously. The agent was trained over <strong>500,000 episodes</strong> and achieved a <strong>best score of 2670</strong>. The training plot shows the raw episode scores, moving average, running maximum, and 90th-percentile windowed performance — all converging to a stable plateau, with occasional breakout games reaching the peak.</p>
+      <p>Several other algorithms were explored along the way — including <strong>DQN, A2C, and various hybrids</strong> — but PPO consistently outperformed them. There is meaningful room for further improvement: better reward shaping, curriculum learning, and more sophisticated state representations are all avenues worth exploring.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Key Contributions</p>
+        <ul class="detail-list">
+          <li>Implemented and trained a <strong>PPO agent</strong> from scratch to play Threes</li>
+          <li>Evaluated and compared <strong>multiple RL algorithms</strong> (DQN, A2C, PPO, hybrids)</li>
+          <li>Achieved a <strong>best score of 2670</strong> over 500,000 training episodes</li>
+          <li>Designed reward shaping and state representation for the tile-merging environment</li>
+          <li>Analysed training stability via moving averages, running max, and percentile tracking</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Technologies</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">PPO</span>
+          <span class="tech-tag">Reinforcement Learning</span>
+          <span class="tech-tag">DQN</span>
+          <span class="tech-tag">A2C</span>
+          <span class="tech-tag">NumPy</span>
+          <span class="tech-tag">Matplotlib</span>
+        </div>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Source Code</p>
+        <a href="https://github.com/ssl9619/Threes" target="_blank" class="detail-link">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-header reveal">
+      <span class="gallery-num">Gallery</span>
+      <h2 class="gallery-title">Training &amp; Results</h2>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item" data-index="0">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="PPO best game replay">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.mp4" type="video/mp4">
+          <source src="../assets/images/threes-ai/ppo_best_best_game.webm" type="video/webm">
+          Your browser does not support embedded video.
+        </video>
+        <div class="masonry-overlay"><span class="masonry-caption">Best Game Replay — Score 2670</span></div>
+      </div>
+      <div class="masonry-item" data-index="1">
+        <img src="../assets/images/threes-ai/ppo-scores.png" alt="PPO training scores over 500,000 episodes" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Training Plot — 500,000 Episodes</span></div>
+      </div>
+      <div class="masonry-item" data-index="2">
+        <img src="../assets/images/threes-ai/threes-game.png" alt="The original Threes mobile game" loading="lazy">
+        <div class="masonry-overlay"><span class="masonry-caption">Original Threes Game</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="personal.html" class="project-nav-item">
+      <span class="nav-direction">← Back</span>
+      <span class="nav-project-name">Personal Projects</span>
+    </a>
+    <a href="intro-im.html" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Next →</span>
+      <span class="nav-project-name">Intro to IM</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+    initSlideshow(
+      'slideshow-threes', 'dots-threes', 'counter-threes', 'progress-threes'
+    );
+  </script>
+</body>
+</html>

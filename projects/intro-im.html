@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intro to Interactive Media — Saeed Lootah</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../project-page.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">S.L.</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-left reveal">
+      <a href="personal.html" class="back-link">Personal projects</a>
+      <p class="project-tag">Physical Computing / p5.js</p>
+      <h1 class="project-title">Intro to<br><em>Interactive Media</em></h1>
+    </div>
+    <div class="project-hero-right reveal reveal-delay-1">
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p class="meta-label">Context</p>
+          <p class="meta-value">Introduction to Interactive Media, NYUAD</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">Spring 2024</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Highlight project</p>
+          <p class="meta-value">Safe Russian Roulette</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Blog</p>
+          <p class="meta-value">
+            <a href="https://intro.nyuadim.com/author/ssl9619/" target="_blank" class="meta-ext-link">intro.nyuadim.com →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED SLIDESHOW -->
+  <div class="slideshow-section">
+    <div class="slideshow" id="slideshow-im">
+      <div class="slide active" data-yt-id="FjFbDAaFtIE" data-yt-caption="Safe Russian Roulette — Final Project Demo">
+        <div class="yt-wrap">
+          <iframe
+            data-src="https://www.youtube.com/embed/FjFbDAaFtIE?rel=0&modestbranding=1&autoplay=1&enablejsapi=0"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            title="Safe Russian Roulette — Final Project Demo"
+          ></iframe>
+          <span class="yt-caption">Safe Russian Roulette — Final Project Demo</span>
+        </div>
+      </div>
+    </div>
+    <div class="slideshow-progress" id="progress-im"></div>
+    <div class="slideshow-dots"     id="dots-im"></div>
+    <span class="slideshow-counter" id="counter-im">1 / 1</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Course Overview</p>
+      <p>Introduction to Interactive Media at NYUAD was a semester-long course exploring physical computing, creative coding, and the intersection of technology with human experience. The work spanned Arduino hardware, p5.js sketches, serial communication, and iterative design — culminating in a fully interactive final project.</p>
+      <p>The course pushed me to think beyond screens: to design experiences that feel physical, have real stakes, and invite people in. The final project — <strong>Safe Russian Roulette</strong> — brought all of that together.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Course Work Includes</p>
+        <ul class="detail-list">
+          <li>Creative coding sketches in <strong>p5.js</strong></li>
+          <li>Physical switch controlled by <strong>ear movement</strong> (glasses + wire contact)</li>
+          <li>Collaborative <strong>Arduino drum pad</strong> with recording &amp; playback</li>
+          <li>Midterm: <strong>Mexican Standoff</strong> — two-player reaction game in p5.js</li>
+          <li>Final: <strong>Safe Russian Roulette</strong> — Arduino + p5.js physical game</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">All Projects</p>
+        <a href="https://intro.nyuadim.com/author/ssl9619/" target="_blank" class="detail-link">View full blog →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT SECTION -->
+  <div class="concept-quote">
+    <blockquote>Safe Russian Roulette — two players, four buttons, a shock pen, and real stakes.</blockquote>
+  </div>
+
+  <!-- HIGHLIGHT DETAIL -->
+  <div class="overview">
+    <div class="overview-text reveal">
+      <p class="section-label">Final Project — Safe Russian Roulette</p>
+      <p>The premise: two players face each other across a table. A virtual revolver is loaded with a mix of live rounds and blanks. Each player can choose to <strong>shoot themselves</strong> (strategic — if it's blank, they keep the turn and raise the odds) or <strong>shoot the other player</strong>. The player who takes a live round loses a life, and the loser of the match has to use a <strong>shock pen</strong> — the real-world stake that makes every decision matter.</p>
+      <p>The hardware consists of <strong>four buttons</strong> (two per player), a <strong>potentiometer</strong> for menu navigation, and <strong>two LEDs</strong> — all connected to an Arduino. The Arduino and the p5.js sketch communicate in real-time over <strong>serial</strong>: button presses trigger game events, and the sketch sends a handshake back.</p>
+      <p>The p5.js sketch manages everything on screen: a <strong>scene management class</strong> controls the flow between start menu, difficulty selection, gameplay, and end screen. Difficulty levels range from <em>Standard</em> (one live round) to <em>Masochist</em> (three to five live rounds). Each player has three lives.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-1">
+      <div class="detail-block">
+        <p class="detail-label">Key Technical Contributions</p>
+        <ul class="detail-list">
+          <li>Built <strong>scene management system</strong> in p5.js across multiple files</li>
+          <li>Implemented full <strong>serial communication</strong> between Arduino and p5.js</li>
+          <li>Designed five-tier <strong>difficulty system</strong> with randomised live rounds</li>
+          <li>Wired and soldered <strong>4 buttons, potentiometer, and 2 LEDs</strong> on custom breadboard</li>
+          <li>Held-button UI interaction for <strong>tactile, satisfying navigation</strong></li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">Technologies</p>
+        <div class="tech-tags">
+          <span class="tech-tag">p5.js</span>
+          <span class="tech-tag">Arduino</span>
+          <span class="tech-tag">Serial Communication</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Physical Computing</span>
+          <span class="tech-tag">Electronics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="threes-ai.html" class="project-nav-item">
+      <span class="nav-direction">← Previous</span>
+      <span class="nav-project-name">Threes AI</span>
+    </a>
+    <a href="personal.html" class="project-nav-item" style="text-align:right; align-items:flex-end;">
+      <span class="nav-direction">Back</span>
+      <span class="nav-project-name">Personal Projects</span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Saeed Lootah</p>
+    <a href="../index.html" class="footer-back">Back to home</a>
+  </footer>
+
+  <script src="../js/portfolio.js"></script>
+  <script>
+    initCursor('a, .masonry-item');
+    initReveal();
+    initImageCaptions();
+    initLightbox();
+    initSlideshow(
+      'slideshow-im', 'dots-im', 'counter-im', 'progress-im'
+    );
+  </script>
+</body>
+</html>

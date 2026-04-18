@@ -1,0 +1,19 @@
+# YouTube links for the Adaptive Nine Hole Peg Test project
+# ──────────────────────────────────────────────────────────────
+# Format: YouTube URL , Caption
+#
+#   Each non-blank, non-comment line is one slide in the featured
+#   slideshow. YouTube slides are added FIRST, before any images.
+#   They auto-advance after 30 s, or the viewer can click a dot to skip.
+#
+#   Supported URL formats:
+#     https://www.youtube.com/watch?v=VIDEO_ID , Caption
+#     https://youtu.be/VIDEO_ID               , Caption
+#     https://www.youtube.com/shorts/VIDEO_ID  , Caption
+#
+# Paste your links below (remove the # at the start of each line):
+#
+https://youtu.be/GWz_OUbwVc8?si=6ADgSvf66_Z4A9m2, Mubadala Presentation
+https://youtu.be/9DeriK3QG10, Early Development With SVM Dexterity Assessment
+https://youtu.be/hgcIwBdFt0g, Haptic Feedback Device With Four Vibration Motors
+https://youtu.be/UTFCzm2vbBE, Playground Stage Before Entering Nine Hole Peg Test

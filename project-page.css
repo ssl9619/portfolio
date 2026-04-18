@@ -1,0 +1,455 @@
+/* ============================================================
+   project-page.css — shared styles for all project detail pages
+   Linked by: projects/nine-hole-peg.html, soft-exoskeleton.html,
+              iqrabbu.html (after ../style.css)
+   ============================================================ */
+
+section { position: relative; z-index: 1; }
+
+/* ── PROJECT HERO ─────────────────────────────────────────── */
+.project-hero {
+  min-height: 60vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+  padding-top: 7rem;
+}
+.project-hero-left {
+  padding: 4rem 3rem 5rem 4rem;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  font-size: var(--fs-xs); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  margin-bottom: 3rem; transition: color 0.25s;
+}
+.back-link:hover { color: var(--rust); }
+.back-link::before { content: '←'; }
+.project-tag {
+  font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.project-tag::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--rust); }
+.project-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  font-weight: 300; line-height: 1; letter-spacing: -0.01em;
+}
+.project-title em { font-style: italic; color: var(--muted); display: block; }
+
+.project-hero-right {
+  padding: 4rem 3rem 5rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.meta-grid { display: flex; flex-direction: column; gap: 2rem; }
+.meta-item { border-top: 1px solid var(--line); padding-top: 1rem; }
+.meta-label {
+  font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dust); margin-bottom: 0.35rem;
+}
+.meta-value { font-family: 'Cormorant Garamond', serif; font-size: var(--fs-md); }
+
+/* ── FEATURED SLIDESHOW ───────────────────────────────────── */
+.slideshow-section {
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  touch-action: pan-y;
+}
+.slideshow {
+  position: relative;
+  width: 100%;
+  /* height set to match the tallest slide so the section doesn't collapse */
+}
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+}
+.slide.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+.slide img,
+.slide video {
+  width: 100%; display: block;
+  height: 70vh;
+  object-fit: contain;
+  object-position: center;
+  background: var(--ink);
+}
+/* Placeholder tile used until real images are added */
+.slide .placeholder-img {
+  height: 70vh;
+}
+.slide .placeholder-img::after {
+  font-size: var(--fs-xs);
+}
+
+/* Progress bar that drains across the 3 s interval */
+.slideshow-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 5px;
+  background: var(--rust);
+  box-shadow: 0 0 8px rgba(184,92,56,0.6);
+  width: 0%;
+  z-index: 10;
+}
+.slideshow-progress.running {
+  /* --progress-dur is set per-slide by JS (3s for images, 30s for YouTube) */
+  animation: progressBar var(--progress-dur, 3s) linear forwards;
+}
+@keyframes progressBar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* Caption bar — bottom-left, derived from image filename by JS */
+.slideshow-caption {
+  position: absolute;
+  bottom: 1.4rem; left: 2rem;
+  font-size: var(--fs-xs); letter-spacing: 0.18em;
+  color: rgba(240,235,224,0.55);
+  pointer-events: none;
+  z-index: 10;
+  max-width: 38%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.4s;
+}
+
+/* Dot indicators */
+.slideshow-dots {
+  position: absolute;
+  bottom: 1.4rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 0.7rem;
+  z-index: 10;
+}
+.slideshow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(240,235,224,0.35);
+  border: none; cursor: none;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s;
+}
+.slideshow-dot.active {
+  background: var(--sand);
+  transform: scale(1.4);
+}
+
+/* Side arrow buttons */
+.slideshow-prev,
+.slideshow-next {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(26,23,20,0.45);
+  border: 1px solid rgba(240,235,224,0.2);
+  color: rgba(240,235,224,0.85);
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  width: 3rem; height: 3rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  backdrop-filter: blur(4px);
+}
+.slideshow-prev { left: 1.5rem; }
+.slideshow-next { right: 1.5rem; }
+.slideshow-prev:hover,
+.slideshow-next:hover {
+  background: rgba(184,92,56,0.75);
+  border-color: var(--rust);
+  color: var(--sand);
+}
+
+/* Slide counter (top-right) */
+.slideshow-counter {
+  position: absolute;
+  top: 1.6rem; right: 2rem;
+  font-size: var(--fs-xs); letter-spacing: 0.18em;
+  color: rgba(240,235,224,0.6);
+  z-index: 10;
+}
+
+/* ── OVERVIEW ─────────────────────────────────────────────── */
+.overview {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.overview-text { padding: 5rem 4rem; border-right: 1px solid var(--line); }
+.section-label {
+  font-size: var(--fs-xs); letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dust); margin-bottom: 2rem;
+}
+.overview-text p { font-size: var(--fs-sm); line-height: 2.1; color: var(--muted); margin-bottom: 1.4rem; }
+.overview-text p:last-child { margin-bottom: 0; }
+.overview-text strong { color: var(--ink); font-weight: 400; }
+.overview-details { padding: 5rem 3.5rem; }
+.detail-block { margin-bottom: 3rem; }
+.detail-block:last-child { margin-bottom: 0; }
+.detail-label {
+  font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dust); margin-bottom: 1rem;
+}
+.detail-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.detail-list li {
+  font-size: var(--fs-sm); line-height: 1.8; color: var(--muted);
+  padding-left: 1.2rem; position: relative;
+}
+.detail-list li::before { content: '—'; position: absolute; left: 0; color: var(--dust); }
+.detail-list strong { color: var(--ink); font-weight: 400; }
+.meta-ext-link {
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.25s, border-color 0.25s;
+  font-family: 'DM Mono', monospace; font-size: var(--fs-sm);
+}
+.meta-ext-link:hover { color: var(--rust); border-color: var(--rust); }
+.detail-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: var(--fs-xs); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line); padding-bottom: 0.2rem;
+  transition: color 0.25s, border-color 0.25s;
+}
+.detail-link:hover { color: var(--rust); border-color: var(--rust); }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tech-tag {
+  font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: 0.3rem 0.8rem; color: var(--muted);
+}
+
+/* ── GALLERY ──────────────────────────────────────────────── */
+.gallery-section { border-bottom: 1px solid var(--line); }
+.gallery-header {
+  display: flex; align-items: baseline; gap: 2rem;
+  padding: 3.5rem 4rem 2.5rem; border-bottom: 1px solid var(--line);
+}
+.gallery-num { font-size: var(--fs-xs); letter-spacing: 0.15em; color: var(--rust); }
+.gallery-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
+
+/* Masonry grid using CSS columns */
+.masonry {
+  padding: 3rem 4rem 4rem;
+  columns: 3; column-gap: 1.5rem;
+}
+.masonry-item {
+  break-inside: avoid; margin-bottom: 1.5rem;
+  position: relative; overflow: hidden; cursor: none;
+}
+.masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+.masonry-item video { width: 100%; display: block; transition: transform 0.5s ease; }
+.masonry-item:hover img { transform: scale(1.03); }
+.masonry-item:hover video { transform: scale(1.03); }
+
+/* Responsive 16:9 video embed inside masonry */
+.masonry-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+.masonry-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.masonry-overlay {
+  position: absolute; inset: 0;
+  background: rgba(26,23,20,0);
+  transition: background 0.3s;
+  display: flex; align-items: flex-end; padding: 1.2rem;
+}
+.masonry-item:hover .masonry-overlay { background: rgba(26,23,20,0.35); }
+.masonry-caption {
+  font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sand); opacity: 0; transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.masonry-item:hover .masonry-caption { opacity: 1; transform: none; }
+
+/* YouTube iframe slides */
+.yt-wrap {
+  position: relative;
+  width: 100%; height: 70vh;
+  background: var(--ink);
+}
+.yt-wrap iframe {
+  width: 100%; height: 100%;
+  border: 0; display: block;
+}
+.yt-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(transparent, rgba(26,23,20,0.75));
+  font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sand); pointer-events: none;
+}
+
+/* Placeholder tiles (until real images are added) */
+.placeholder-img {
+  width: 100%; display: block;
+  background: var(--line); position: relative; overflow: hidden;
+}
+.placeholder-img::after {
+  content: 'Add image'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--fs-xs); letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--dust);
+}
+
+/* ── PROJECT NAV (between pages) ──────────────────────────── */
+.project-nav { display: grid; grid-template-columns: 1fr 1fr; }
+.project-nav-item {
+  padding: 3rem 4rem; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: 0.8rem; transition: background 0.3s;
+}
+.project-nav-item:first-child { border-right: 1px solid var(--line); }
+.project-nav-item:hover { background: rgba(184,92,56,0.04); }
+.nav-direction { font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--dust); }
+.nav-project-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; }
+
+/* ── CONCEPT QUOTE (Iqrabbu only) ─────────────────────────── */
+.concept-quote {
+  padding: 5rem 4rem; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+}
+.concept-quote blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 300; font-style: italic;
+  line-height: 1.4; text-align: center;
+  max-width: 28ch; color: var(--muted);
+}
+.concept-quote blockquote::before { content: '"'; color: var(--rust); }
+.concept-quote blockquote::after  { content: '"'; color: var(--rust); }
+
+/* ── LIGHTBOX ─────────────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,23,20,0.96);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: default;
+}
+#lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lb-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 88vw;
+  max-height: 88vh;
+}
+.lb-content img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+}
+.lb-video {
+  width: 76vw;
+  max-width: 1080px;
+  aspect-ratio: 16 / 9;
+}
+.lb-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.lb-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: 1px solid rgba(240,235,224,0.25);
+  color: rgba(240,235,224,0.7);
+  font-size: 0.9rem;
+  font-family: 'DM Mono', monospace;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+  z-index: 901;
+  transition: border-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lb-close:hover { border-color: var(--rust); color: var(--rust); }
+.lb-prev,
+.lb-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid rgba(240,235,224,0.25);
+  color: rgba(240,235,224,0.7);
+  font-size: 1rem;
+  font-family: 'DM Mono', monospace;
+  width: 2.8rem;
+  height: 2.8rem;
+  cursor: pointer;
+  z-index: 901;
+  transition: border-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lb-prev { left: 1.5rem; }
+.lb-next { right: 1.5rem; }
+.lb-prev:hover,
+.lb-next:hover { border-color: var(--rust); color: var(--rust); }
+.lb-caption {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.45);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .project-hero { grid-template-columns: 1fr; }
+  .project-hero-left { padding: 3rem 2rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .project-hero-right { padding: 3rem 2rem; }
+  .overview { grid-template-columns: 1fr; }
+  .overview-text { padding: 3rem 2rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .overview-details { padding: 3rem 2rem; }
+  .concept-quote { padding: 3.5rem 2rem; }
+  .gallery-header { padding: 3rem 2rem 2rem; }
+  .masonry { padding: 2rem; columns: 2; }
+  .project-nav-item { padding: 2rem; }
+}
+@media (max-width: 600px) {
+  .masonry { columns: 1; }
+}
