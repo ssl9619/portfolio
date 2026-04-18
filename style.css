@@ -24,7 +24,7 @@
   --fs-md:   1.10rem;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--sand);
@@ -161,5 +161,22 @@ footer {
   .nav-links { gap: 1.5rem; }
   footer { padding: 1.5rem 2rem; }
   .footer-links { gap: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  nav {
+    padding: 1.2rem 1.5rem;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .nav-links {
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
 }
 
