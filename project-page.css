@@ -104,7 +104,7 @@ section { position: relative; z-index: 1; }
   z-index: 10;
 }
 .slideshow-progress.running {
-  /* --progress-dur is set per-slide by JS (3s for images, 30s for YouTube) */
+  /* --progress-dur is set per-slide by JS for timed (non-video) slides */
   animation: progressBar var(--progress-dur, 3s) linear forwards;
 }
 @keyframes progressBar {
@@ -139,7 +139,7 @@ section { position: relative; z-index: 1; }
   width: 6px; height: 6px;
   border-radius: 50%;
   background: rgba(240,235,224,0.35);
-  border: none; cursor: none;
+  border: none; cursor: pointer;
   padding: 0;
   transition: background 0.3s, transform 0.3s;
 }
@@ -247,7 +247,7 @@ section { position: relative; z-index: 1; }
 }
 .masonry-item {
   break-inside: avoid; margin-bottom: 1.5rem;
-  position: relative; overflow: hidden; cursor: none;
+  position: relative; overflow: hidden; cursor: pointer;
 }
 .masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
 .masonry-item video { width: 100%; display: block; transition: transform 0.5s ease; }

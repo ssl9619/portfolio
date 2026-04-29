@@ -34,27 +34,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── CUSTOM CURSOR (mouse/trackpad only) ────────────────────── */
-/* Hidden and system cursor kept on touch devices               */
-.cursor { display: none; }
-
-@media (pointer: fine) {
-  body { cursor: none; }
-  .cursor {
-    display: block;
-    position: fixed; top: 0; left: 0;
-    width: 10px; height: 10px;
-    background: var(--rust);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
-    mix-blend-mode: multiply;
-  }
-  .cursor.expand { width: 40px; height: 40px; background: var(--dust); }
-}
-
 /* ── NOISE OVERLAY ─────────────────────────────────────────── */
 body::before {
   content: '';
@@ -139,7 +118,7 @@ footer {
 .lightbox-close {
   position: absolute; top: 2rem; right: 2.5rem;
   font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--dust); cursor: none; transition: color 0.25s;
+  color: var(--dust); cursor: pointer; transition: color 0.25s;
 }
 .lightbox-close:hover { color: var(--sand); }
 .lightbox-nav {
@@ -150,7 +129,7 @@ footer {
   background: none; border: 1px solid var(--muted);
   color: var(--dust); font-family: 'DM Mono', monospace;
   font-size: var(--fs-xs); letter-spacing: 0.15em; text-transform: uppercase;
-  padding: 0.5rem 1.2rem; cursor: none; transition: border-color 0.25s, color 0.25s;
+  padding: 0.5rem 1.2rem; cursor: pointer; transition: border-color 0.25s, color 0.25s;
 }
 .lightbox-nav button:hover { border-color: var(--sand); color: var(--sand); }
 .lightbox-counter { font-size: var(--fs-xs); letter-spacing: 0.15em; color: var(--muted); }

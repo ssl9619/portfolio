@@ -1,23 +1,7 @@
 /* ============================================================
    portfolio.js — shared behaviour for every page
-   Exports: initCursor(), initReveal(), initSlideshow()
+   Exports: initReveal(), initSlideshow()
    ============================================================ */
-
-// ── Custom cursor (mouse/trackpad devices only) ────────────
-function initCursor(hoverSelector) {
-  // Skip on touch-only devices (phones, tablets)
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-  const cursor = document.getElementById('cursor');
-  if (!cursor) return;
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top  = e.clientY + 'px';
-  });
-  document.querySelectorAll(hoverSelector).forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-}
 
 // ── Scroll-reveal observer ─────────────────────────────────
 function initReveal() {
@@ -94,9 +78,6 @@ function initPersonalTiles() {
 
 // ── YouTube helpers ────────────────────────────────────────
 
-// How long (seconds) to show a YouTube slide before auto-advancing
-const YT_DURATION = 30;
-
 // Extract video ID from any common YouTube URL format
 function youtubeId(url) {
   const patterns = [
@@ -136,7 +117,8 @@ function buildYtSlide(item) {
   div.dataset.ytId     = vid;
   div.dataset.ytCaption = item.caption || '';
   // Store the embed URL in data-src; we set iframe.src only when the slide is active
-  const embedSrc = `https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1&enablejsapi=0`;
+  const origin = encodeURIComponent(window.location.origin);
+  const embedSrc = `https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1&enablejsapi=1&playsinline=1&origin=${origin}`;
   div.innerHTML = `
     <div class="yt-wrap">
       <iframe
@@ -179,9 +161,8 @@ function buildYtSlide(item) {
 //   </div>
 //
 // YouTube slides are loaded from csvPath (optional) and
-// prepended before the static slides. They auto-advance after
-// YT_DURATION seconds (default 30). Local video slides advance
-// when the video ends. Image/placeholder slides advance at 3 s.
+// prepended before the static slides. Video slides (local + YouTube)
+// advance when playback ends. Image/placeholder slides advance at 3 s.
 
 async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath) {
   const wrapper = document.getElementById(slideshowId);
@@ -232,7 +213,9 @@ async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath
   let current  = 0;
   let timer    = null;
   let rafId    = null;
+  let progressCleanup = null;
   let isPaused = false;
+  const ytStates = new Map();
 
   // Find which slide is initially active
   slides.forEach((s, i) => { if (s.classList.contains('active')) current = i; });
@@ -290,10 +273,39 @@ async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath
   function getVideo(el)  { return el.querySelector('video'); }
   function getIframe(el) { return el.querySelector('iframe'); }
   function isYt(el)      { return !!el.dataset.ytId || !!el.querySelector('iframe'); }
+  function getYtState(iframe) {
+    if (!ytStates.has(iframe)) {
+      ytStates.set(iframe, {
+        duration: 0,
+        currentTime: 0,
+      });
+    }
+    return ytStates.get(iframe);
+  }
+  function postYt(iframe, payload) {
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify(payload), '*');
+    }
+  }
+  function trackYt(iframe) {
+    if (!iframe) return;
+    const state = getYtState(iframe);
+    if (state.onLoad) return;
+    state.onLoad = () => {
+      postYt(iframe, { event: 'listening', id: iframe.id || undefined, channel: 'widget' });
+      postYt(iframe, { event: 'command', func: 'addEventListener', args: ['onReady'] });
+      postYt(iframe, { event: 'command', func: 'addEventListener', args: ['onStateChange'] });
+      postYt(iframe, { event: 'command', func: 'addEventListener', args: ['infoDelivery'] });
+    };
+    iframe.addEventListener('load', state.onLoad);
+    const cur = iframe.getAttribute('src') || '';
+    if (cur && cur !== 'about:blank') state.onLoad();
+  }
 
   function stopAll() {
-    clearInterval(timer);        timer = null;
+    clearTimeout(timer);         timer = null;
     cancelAnimationFrame(rafId); rafId = null;
+    if (progressCleanup) { progressCleanup(); progressCleanup = null; }
   }
 
   // Activate / deactivate YouTube iframe (set/clear src to play/stop)
@@ -306,29 +318,48 @@ async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath
     if (cur === '' || cur === 'about:blank') {
       iframe.src = iframe.dataset.src;
     }
+    trackYt(iframe);
+    const state = getYtState(iframe);
+    state.currentTime = 0;
+    state.duration = 0;
+    postYt(iframe, { event: 'command', func: 'playVideo', args: [] });
   }
   function deactivateYt(slideEl) {
     const iframe = getIframe(slideEl);
-    if (iframe) iframe.setAttribute('src', 'about:blank');
+    if (!iframe) return;
+    postYt(iframe, { event: 'command', func: 'pauseVideo', args: [] });
+    postYt(iframe, { event: 'command', func: 'seekTo', args: [0, true] });
+    iframe.setAttribute('src', 'about:blank');
   }
 
   // Start the animated progress bar for the current slide
-  function startProgress(slideEl, duration) {
+  function startProgress(slideEl, duration, ytSlide) {
     const video = getVideo(slideEl);
     progressEl.classList.remove('running');
     progressEl.style.removeProperty('--progress-dur');
     progressEl.style.width = '';
     cancelAnimationFrame(rafId); rafId = null;
+    if (progressCleanup) { progressCleanup(); progressCleanup = null; }
 
     if (video) {
-      // JS-driven: tracks video.currentTime / duration
+      // JS-driven: track local video playback progress
       progressEl.style.width = '0%';
-      function tick() {
-        if (video.paused || !video.duration) return;
-        progressEl.style.width = (video.currentTime / video.duration * 100) + '%';
-        rafId = requestAnimationFrame(tick);
-      }
-      rafId = requestAnimationFrame(tick);
+      const update = () => {
+        const pct = video.duration ? Math.min(100, (video.currentTime / video.duration) * 100) : 0;
+        progressEl.style.width = pct + '%';
+      };
+      ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked', 'play', 'pause'].forEach(evt => {
+        video.addEventListener(evt, update);
+      });
+      progressCleanup = () => {
+        ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked', 'play', 'pause'].forEach(evt => {
+          video.removeEventListener(evt, update);
+        });
+      };
+      update();
+    } else if (ytSlide) {
+      // JS-driven: width is updated from YouTube infoDelivery events
+      progressEl.style.width = '0%';
     } else {
       // CSS keyframe animation with configurable duration
       progressEl.style.setProperty('--progress-dur', (duration || 3) + 's');
@@ -337,13 +368,61 @@ async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath
     }
   }
 
+  function onYtMessage(event) {
+    if (typeof event.data !== 'string') return;
+    let payload;
+    try {
+      payload = JSON.parse(event.data);
+    } catch (_) {
+      return;
+    }
+    let matchedIframe = null;
+    for (const iframe of ytStates.keys()) {
+      if (iframe.contentWindow === event.source) {
+        matchedIframe = iframe;
+        break;
+      }
+    }
+    if (!matchedIframe) return;
+
+    const state = getYtState(matchedIframe);
+    const activeSlide = slides[current];
+    const isActive = activeSlide && activeSlide.contains(matchedIframe);
+
+    if (payload.event === 'onReady' && isActive) {
+      postYt(matchedIframe, { event: 'command', func: 'playVideo', args: [] });
+      return;
+    }
+
+    if (payload.event === 'onStateChange' && Number(payload.info) === 0 && isActive && !isPaused) {
+      progressEl.style.width = '100%';
+      goTo(current + 1);
+      return;
+    }
+
+    if (payload.event === 'infoDelivery' && payload.info) {
+      if (typeof payload.info.duration === 'number' && payload.info.duration > 0) {
+        state.duration = payload.info.duration;
+      }
+      if (typeof payload.info.currentTime === 'number') {
+        state.currentTime = payload.info.currentTime;
+      }
+      if (isActive && state.duration > 0) {
+        const pct = Math.min(100, (state.currentTime / state.duration) * 100);
+        progressEl.style.width = pct + '%';
+      }
+    }
+  }
+
+  window.addEventListener('message', onYtMessage);
+
   // ── 5. Core slide activation ──────────────────────────────
   function startSlide(slideEl) {
     const video    = getVideo(slideEl);
     const ytSlide  = isYt(slideEl);
-    const duration = ytSlide ? YT_DURATION : 3;
+    const duration = 3;
 
-    startProgress(slideEl, duration);
+    startProgress(slideEl, duration, ytSlide);
 
     if (video) {
       // Local video: advance when the video finishes
@@ -351,12 +430,11 @@ async function initSlideshow(slideshowId, dotsId, counterId, progressId, csvPath
       video.play().catch(() => {});
       video.onended = () => { if (!isPaused) goTo(current + 1); };
     } else if (ytSlide) {
-      // YouTube: load iframe, then auto-advance after YT_DURATION s
+      // YouTube: load iframe and advance only when playback ends
       activateYt(slideEl);
-      timer = setInterval(() => { if (!isPaused) goTo(current + 1); }, YT_DURATION * 1000);
     } else {
       // Image / placeholder: advance after 3 s
-      timer = setInterval(() => { if (!isPaused) goTo(current + 1); }, 3000);
+      timer = setTimeout(() => { if (!isPaused) goTo(current + 1); }, 3000);
     }
   }
 

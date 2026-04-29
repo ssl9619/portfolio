@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Personal Projects — Saeed Lootah</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
   <link rel="stylesheet" href="../style.css"/>
   <style>
     /* ── PAGE HERO ─────────────────────────────────────────── */
@@ -207,7 +208,7 @@
       margin-bottom: 1.2rem;
       position: relative;
       overflow: hidden;
-      cursor: none;
+      cursor: pointer;
     }
     .masonry-item img,
     .masonry-item video {
@@ -367,7 +368,6 @@
   </style>
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
 
   <nav>
     <a href="../index.html" class="nav-logo">S.L.</a>
@@ -485,7 +485,6 @@
 
   <script src="../js/portfolio.js"></script>
   <script>
-    initCursor('a, .masonry-item');
     initReveal();
     initImageCaptions();
     initLightbox();
